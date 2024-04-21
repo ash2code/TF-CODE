@@ -66,7 +66,7 @@ resource "aws_instance" "my_ec2_instance" {
   ami           = "ami-080e1f13689e07408"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.my_subnet.id
-  security_groups = ["aws_security_group.web_server.id"]
+  security_groups = ["aws_security_group.nginx_sg.id"]
 
   tags = {
     Name = "MyEC2Instance"
