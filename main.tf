@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "ap-south-1"
+  region = "us-east-1"
 }
 
 resource "aws_vpc" "my_vpc" {
@@ -26,7 +26,7 @@ resource "aws_internet_gateway" "my_igw" {
 resource "aws_subnet" "my_subnet" {
   vpc_id     = aws_vpc.my_vpc.id
   cidr_block = "10.0.1.0/24"
-  availability_zone = "ap-south-1a"
+  availability_zone = "us-east-1a"
   map_public_ip_on_launch = true
 }
 
@@ -63,7 +63,7 @@ resource "aws_security_group" "nginx_sg" {
 }
 
 resource "aws_instance" "my_ec2_instance" {
-  ami           = "ami-001843b876406202a"
+  ami           = "ami-080e1f13689e07408"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.my_subnet.id
   security_groups = ["aws_security_group.web_server.id"]
