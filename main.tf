@@ -14,8 +14,8 @@ provider "aws" {
 }
 
 resource "aws_vpc" "my_vpc" {
-  cidr_block = "10.0.0.0/16"
-  enable_dns_support = true
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_support   = true
   enable_dns_hostnames = true
 }
 
@@ -24,8 +24,8 @@ resource "aws_internet_gateway" "my_igw" {
 }
 
 resource "aws_subnet" "my_subnet" {
-  vpc_id     = aws_vpc.my_vpc.id
-  cidr_block = "10.0.1.0/24"
+  vpc_id            = aws_vpc.my_vpc.id
+  cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-1a"
   map_public_ip_on_launch = true
 }
@@ -63,10 +63,10 @@ resource "aws_security_group" "nginx_sg" {
 }
 
 resource "aws_instance" "my_ec2_instance" {
-  ami           = "ami-080e1f13689e07408"
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.my_subnet.id
-  security_groups = ["aws_security_group.nginx_sg.id"]
+  ami             = "ami-080e1f13689e07408"
+  instance_type   = "t2.micro"
+  subnet_id       = aws_subnet.my_subnet.id
+  security_groups = [aws_security_group.nginx_sg.id]
 
   tags = {
     Name = "MyEC2Instance"
